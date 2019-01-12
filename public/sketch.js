@@ -21,7 +21,7 @@ function setup() {
 }
 function usernameselect() {
   createCanvas(window.innerWidth, window.innerHeight);
-  socket = io.connect('http://192.168.1.46:3000/');
+  socket = io.connect('https://bobio.herokuapp.com/');
   input = createInput();
   input.position(window.innerWidth/2-100, window.innerHeight/2-30);
   button = createButton('submit');

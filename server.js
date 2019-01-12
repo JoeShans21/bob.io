@@ -21,7 +21,7 @@ for (var i=0; i < 70; i++) {
 }
 var express = require('express');
 var app = express();
-var server = app.listen(3000, "0.0.0.0");
+var server = app.listen(process.env.PORT || 8080);
 function listen() {
   var host = server.address().address;
   var port = server.address().port;
