@@ -10,6 +10,7 @@ var mapWidth = 700;
 var mapHeight = 700;
 var bob;
 var brushes = [];
+var local=true;
 function preload() {
   bob = loadImage('images/bob.png');
   for (var i = 0; i < 4; i++) {
@@ -21,7 +22,12 @@ function setup() {
 }
 function usernameselect() {
   createCanvas(window.innerWidth, window.innerHeight);
-  socket = io.connect('https://bobio.herokuapp.com/');
+  if (local==true){
+    socket = io.connect('http://192.168.1.46:3000/');
+  }
+  else {
+    socket = io.connect('https://bobio.herokuapp.com/');
+  }
   input = createInput();
   input.position(window.innerWidth/2-100, window.innerHeight/2-30);
   button = createButton('submit');
@@ -81,6 +87,7 @@ function draw() {
       //floor(random(0, 4))
       image(brushes[foods[i].img], foods[i].x, foods[i].y, 40, 40);
       if (blob.eats(foods[i])) {
+        blobs.splice(i, 1);
         socket.emit('removefood', i);
       }
     }

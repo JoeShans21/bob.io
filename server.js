@@ -8,20 +8,25 @@ function Blob(user, x, y, r) {
   this.y = y;
   this.r = r;
 }
-function Food(id, x, y, r, random) {
-  this.id = id;
+function Food(x, y, r, random) {
   this.x = x;
   this.y = y;
   this.r = r;
   this.img = random;
 }
 for (var i=0; i < 70; i++) {
-  var food = new Food(i, (Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, 4, Math.floor(Math.random()*4));
+  var food = new Food((Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, 4, Math.floor(Math.random()*4));
   foods.push(food);
 }
 var express = require('express');
 var app = express();
-var server = app.listen(process.env.PORT || 8080);
+var local=true;
+if (local==true){
+  var server = app.listen(3000, "0.0.0.0");
+}
+else {
+  var server = app.listen(process.env.PORT || 8080);
+}
 function listen() {
   var host = server.address().address;
   var port = server.address().port;
@@ -61,10 +66,10 @@ io.sockets.on('connection',
       }
     );
     socket.on('removefood',
-      function(data) {
-        foods.splice(data, 1);
-        i = foods.length;
-        var food = new Food(i, (Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, 4, Math.floor(Math.random()*4));
+      function(i) {
+        console.log("removed food: " + i);
+        foods.splice(i, 1);
+        var food = new Food((Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, 4, Math.floor(Math.random()*4));
         foods.push(food);
       }
     );

@@ -14,9 +14,8 @@ function Blob(user, x, y, r) {
   this.eats = function(other) {
     var d = this.pos.dist(createVector(other.x, other.y));
     if (d < this.r + other.r) {
-      //var sum = PI * this.r * this.r + PI * other.r * other.r;
-      //this.r = sqrt(sum/PI);
-      this.r += .2;
+      var sum = PI * this.r * this.r + PI * other.r * other.r;
+      this.r = sqrt(sum/PI);
       return true;
     } else {
       return false;
