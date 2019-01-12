@@ -81,7 +81,6 @@ function draw() {
       //floor(random(0, 4))
       image(brushes[foods[i].img], foods[i].x, foods[i].y, 40, 40);
       if (blob.eats(foods[i])) {
-        foods.splice(i,1);
         socket.emit('removefood', i);
       }
     }
