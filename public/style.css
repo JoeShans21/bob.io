@@ -1,0 +1,41 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+#score {
+  position: absolute;
+  color: white;
+  padding-left: 10px;
+  padding-top: 10px;
+  font-size: 35;
+}
+.parent {
+  background: white;
+  height: 92%;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+.child {
+  background: #01CCFE;
+  color: white;
+  width: 95%;
+  height: 500px;
+  padding: 20px;
+  overflow: auto;
+  text-align: center;
+}
+#username {
+  margin-top: 35px;
+  height: 30px;
+  text-align: center;
+}
+#submit {
+  margin-top: 35px;
+  width: 100px;
+  height: 30px;
+}
