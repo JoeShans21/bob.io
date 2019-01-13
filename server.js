@@ -19,7 +19,7 @@ for (var i=0; i < 70; i++) {
 }
 var express = require('express');
 var app = express();
-var local=false;
+var local=true;
 if (local==true){
   var server = app.listen(3000, "0.0.0.0");
 }

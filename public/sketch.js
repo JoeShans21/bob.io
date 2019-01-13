@@ -36,7 +36,6 @@ function usernameselect() {
 }
 function game() {
   blob = new Blob(input.value(), random(mapWidth), random(mapHeight), 50);
-  blobs.push(blob);
   removeElements();
   started = true;
   document.getElementById("score").hidden = false;
@@ -49,7 +48,7 @@ function game() {
   socket.emit('start', data);
   socket.on('heartbeat',
     function(data) {
-      foods = data[0];
+      blobs = data[0];
       var newfoods = [];
       data[1].forEach(function (element){
         var newfood = new Food(element.x, element.y, element.img);
@@ -75,7 +74,7 @@ function draw() {
     for (var i = blobs.length-1; i >= 0; i--) {
       if (blobs[i].user !== blob.user) {
         imageMode(CENTER);
-        image(bob, blobs[i].pos.x, blobs[i].pos.y, blobs[i].r*2, blobs[i].r*2);
+        image(bob, blobs[i].x, blobs[i].y, blobs[i].r*2, blobs[i].r*2);
       }
     }
     for (var i = 0; i < foods.length; i++) {
