@@ -48,12 +48,7 @@ function game() {
   socket.emit('start', data);
   socket.on('heartbeat',
     function(data) {
-      var newblobs = [];
-      data[0].forEach(function (element){
-        var newblob = new Blob(element.user, element.x, element.y, element.r);
-        newblobs.push(newblob);
-      });
-      blobs = newblobs;
+      foods = data[0];
       var newfoods = [];
       data[1].forEach(function (element){
         var newfood = new Food(element.x, element.y, element.img);
@@ -78,7 +73,8 @@ function draw() {
     line (-mapWidth, mapHeight, mapWidth, mapHeight);
     for (var i = blobs.length-1; i >= 0; i--) {
       if (blobs[i].user !== blob.user) {
-        blobs[i].show();
+        imageMode(CENTER);
+        image(bob, blobs[i].pos.x, blobs[i].pos.y, blobs[i].r*2, blobs[i].r*2);
       }
     }
     for (var i = 0; i < foods.length; i++) {
