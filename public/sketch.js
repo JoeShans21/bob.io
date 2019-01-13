@@ -48,7 +48,12 @@ function game() {
   socket.emit('start', data);
   socket.on('heartbeat',
     function(data) {
-      blobs = data[0];
+      var newblobs = [];
+      data[0].forEach(function (element){
+        var newblob = new Blob(element.user, element.x, element.y, element.r);
+        newblobs.push(newblob);
+      });
+      blobs = newblobs;
       var newfoods = [];
       data[1].forEach(function (element){
         var newfood = new Food(element.x, element.y, element.img);
