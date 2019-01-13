@@ -75,6 +75,12 @@ function draw() {
       if (blobs[i].user !== blob.user) {
         imageMode(CENTER);
         image(bob, blobs[i].x, blobs[i].y, blobs[i].r*2, blobs[i].r*2);
+        var res = blob.eatsblob(blobs[i]);
+        if (res==2) {
+          started = false;
+          socket.disconnect();
+          alert(blobs[i].user + " ate you!")
+        }
       }
     }
     for (var i = 0; i < foods.length; i++) {
