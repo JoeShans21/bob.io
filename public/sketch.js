@@ -10,7 +10,7 @@ var mapWidth = 700;
 var mapHeight = 700;
 var bob;
 var brushes = [];
-var local=true;
+var local=false;
 function preload() {
   bob = loadImage('images/bob.png');
   for (var i = 0; i < 4; i++) {
