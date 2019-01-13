@@ -36,6 +36,7 @@ function usernameselect() {
 }
 function game() {
   blob = new Blob(input.value(), random(mapWidth), random(mapHeight), 50);
+  blobs.push(blob);
   removeElements();
   started = true;
   document.getElementById("score").hidden = false;
