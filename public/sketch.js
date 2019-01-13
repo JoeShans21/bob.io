@@ -10,7 +10,7 @@ var mapWidth = 700;
 var mapHeight = 700;
 var bob;
 var brushes = [];
-var local=false;
+var local=true;
 function preload() {
   bob = loadImage('images/bob.png');
   for (var i = 0; i < 4; i++) {
@@ -87,7 +87,7 @@ function draw() {
       //floor(random(0, 4))
       image(brushes[foods[i].img], foods[i].x, foods[i].y, 40, 40);
       if (blob.eats(foods[i])) {
-        blobs.splice(i, 1);
+        foods.splice(i, 1);
         socket.emit('removefood', i);
       }
     }
