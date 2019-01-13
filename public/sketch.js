@@ -49,7 +49,12 @@ function game() {
   socket.on('heartbeat',
     function(data) {
       blobs = data[0];
-      foods = data[1];
+      var newfoods = [];
+      data[1].forEach(function (element){
+        var newfood = new Food(element.x, element.y, element.img);
+        newfoods.push(newfood);
+      });
+      foods = newfoods;
     }
   );
 }
@@ -66,30 +71,14 @@ function draw() {
     line (mapWidth, mapHeight, mapWidth, -mapHeight);
     line (-mapWidth, -mapHeight, mapWidth, -mapHeight);
     line (-mapWidth, mapHeight, mapWidth, mapHeight);
-    console.log(blobs);
     for (var i = blobs.length-1; i >= 0; i--) {
       if (blobs[i].user !== blob.user) {
-        //fill(0, 0, 255);
-        //ellipse(blobs[i].x, blobs[i].y, blobs[i].r*2, blobs[i].r*2);
-        imageMode(CENTER);
-        image(bob, blobs[i].x, blobs[i].y, blobs[i].r*2, blobs[i].r*2);
-        var res = blob.eatsblob(blobs[i]);
-        if (res==2) {
-          started = false;
-          socket.disconnect();
-          alert(blobs[i].user + " ate you!")
-        }
+        blobs[i].show();
       }
     }
     for (var i = 0; i < foods.length; i++) {
-      //fill(255, 0, 0);
-      //ellipse(foods[i].x, foods[i].y, foods[i].r*2, foods[i].r*2);
-      //floor(random(0, 4))
-      image(brushes[foods[i].img], foods[i].x, foods[i].y, 40, 40);
-      if (blob.eats(foods[i])) {
-        foods.splice(i, 1);
-        socket.emit('removefood', i);
-      }
+      foods[i].eaten();
+      foods[i].show();
     }
     blob.show();
     blob.update();

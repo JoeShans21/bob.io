@@ -8,19 +8,18 @@ function Blob(user, x, y, r) {
   this.y = y;
   this.r = r;
 }
-function Food(x, y, r, img) {
+function Food(x, y, img) {
   this.x = x;
   this.y = y;
-  this.r = r;
   this.img = img;
 }
 for (var i=0; i < 70; i++) {
-  var food = new Food((Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, 4, Math.floor(Math.random()*4));
+  var food = new Food((Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, Math.floor(Math.random()*4));
   foods.push(food);
 }
 var express = require('express');
 var app = express();
-var local=false;
+var local=true;
 if (local==true){
   var server = app.listen(3000, "0.0.0.0");
 }
@@ -65,13 +64,16 @@ io.sockets.on('connection',
         }
       }
     );
-    socket.on('removefood',
-    function(i) {
-      console.log("removed food: " + i);
-      foods.splice(i, 1);
-      var food = new Food((Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, 4, Math.floor(Math.random()*4));
-      foods.push(food);
-    }
+    socket.on('removeme',
+      function (myx) {
+        foods.forEach(function (element){
+          if (element.x == myx) {
+            foods.splice(foods.indexOf(element), 1);
+            var food = new Food((Math.random() * mapWidth * 2)-mapWidth, (Math.random() * mapHeight * 2)-mapHeight, Math.floor(Math.random()*4));
+            foods.push(food);
+          }
+        })
+      }
     );
     socket.on('checkuser',
       function (recieveduser) {
