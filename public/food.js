@@ -3,7 +3,7 @@ function Food(x, y, img) {
   this.y = y;
   this.eaten = function() {
     var d = createVector(x, y).dist(createVector(blob.x, blob.y));
-    if (d < 40 + enemy.r) {
+    if (d < 40 + blob.r) {
       socket.emit("removeme", x);
       blob.r+=.1;
     }
