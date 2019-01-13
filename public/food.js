@@ -5,7 +5,7 @@ function Food(x, y, img) {
     var d = createVector(x, y).dist(createVector(blob.pos.x, blob.pos.y));
     if (d < 40 + blob.r) {
       socket.emit("removeme", x);
-      blob.r+=..01;
+      blob.r+=.01;
     }
   }
   this.show = function() {
