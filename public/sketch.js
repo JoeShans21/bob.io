@@ -60,6 +60,10 @@ function game() {
 }
 function draw() {
   if (started){
+    socket.on('disconnectme', function(){
+      socket.disconnect();
+      alert("You have been disconnected to the server");
+    })
     document.getElementById('score').innerHTML = Math.round(blob.r)-50;
     background(0, 255, 0);
     translate(window.innerWidth/2, window.innerHeight/2);

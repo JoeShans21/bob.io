@@ -58,9 +58,14 @@ io.sockets.on('connection',
               blob = blobs[i];
             }
           }
-          blob.x = data.x;
-          blob.y = data.y;
-          blob.r = data.r;
+          if (blob == null){
+            socket.emit("disconnectme");
+          }
+          else {
+            blob.x = data.x;
+            blob.y = data.y;
+            blob.r = data.r;
+          }
         }
       }
     );
