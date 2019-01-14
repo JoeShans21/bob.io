@@ -73,6 +73,9 @@ function draw() {
     line (-mapWidth, mapHeight, mapWidth, mapHeight);
     for (var i = blobs.length-1; i >= 0; i--) {
       if (blobs[i].user !== blob.user) {
+        fill(0);
+        textAlign(CENTER);
+        text(blobs[i].user, blobs[i].x, blobs[i].y - blobs[i].r * 1.2)
         imageMode(CENTER);
         image(bob, blobs[i].x, blobs[i].y, blobs[i].r*2, blobs[i].r*2);
         var res = blob.eatsblob(blobs[i]);
