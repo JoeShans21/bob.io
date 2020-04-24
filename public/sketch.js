@@ -10,7 +10,7 @@ var mapWidth = 700;
 var mapHeight = 700;
 var bob;
 var brushes = [];
-var local=false;
+var local=true;
 function preload() {
   bob = loadImage('images/bob.png');
   for (var i = 0; i < 4; i++) {
@@ -23,7 +23,7 @@ function setup() {
 function usernameselect() {
   createCanvas(window.innerWidth, window.innerHeight);
   if (local==true){
-    socket = io.connect('http://192.168.1.46:3000/');
+    socket = io.connect('http://192.168.1.45:2121/');
   }
   else {
     socket = io.connect('https://bobio.herokuapp.com/');
