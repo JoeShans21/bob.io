@@ -31,7 +31,7 @@ function listen() {
   var port = server.address().port;
   console.log('Example app listening at http://' + host + ':' + port);
 }
-app.use(express.static('public'));
+app.use('/game', express.static('public'));
 var io = require('socket.io')(server);
 setInterval(heartbeat, 33);
 function heartbeat() {
