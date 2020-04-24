@@ -19,9 +19,9 @@ for (var i=0; i < 70; i++) {
 }
 var express = require('express');
 var app = express();
-var local=false;
+var local=true;
 if (local==true){
-  var server = app.listen(3000, "0.0.0.0");
+  var server = app.listen(2121, "0.0.0.0");
 }
 else {
   var server = app.listen(process.env.PORT || 8080);
